@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Ite
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: starting MainActivity");
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: Lights, camera, action! MainActivity is starting up.");
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Ite
     * @returns List<Movie>
     * */
     private void fetchMovies(String sortType) {
+        Log.d(TAG, "fetchMovies: fetching movies with sortType=" + sortType);
         showProgressBar();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIService.BASE_URL)
@@ -186,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Ite
     * */
     @Override
     public void onItemClick(Movie movie) {
+        Log.d(TAG, "onItemClick: movie selected -> " + movie.getTitle());
         Intent i = new Intent(MainActivity.this, DetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable(EXTRA_OBJECT, Parcels.wrap(movie));
