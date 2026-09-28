@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.example.dharan1011.popular_movie_app.Adapters.MovieReviewAdapter;
@@ -55,6 +56,7 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: starting DetailsActivity");
         setContentView(R.layout.activity_details);
         getSupportActionBar().setTitle(R.string.title_activity_movie_details);
 
@@ -121,6 +123,7 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
 * @param movieId
 * */
     private void fetchTrailers(String movieId) {
+        Log.d(TAG, "fetchTrailers: fetching trailers for movieId=" + movieId);
         detailsBinding.pbTrailersLoading.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIService.BASE_URL)
@@ -161,6 +164,7 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     * @param movieId
     * */
     private void fetchReviews(String movieId) {
+        Log.d(TAG, "fetchReviews: fetching reviews for movieId=" + movieId);
         detailsBinding.pbReviewsLoading.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(APIService.BASE_URL)
@@ -293,6 +297,7 @@ public class DetailsActivity extends AppCompatActivity implements MovieTrailerAd
     * */
     @Override
     public void onItemClick(String key) {
+        Log.d(TAG, "onItemClick: trailer selected -> " + key);
         String url = getString(R.string.youtube_base_url) + key;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         if (intent.resolveActivity(getPackageManager()) != null) {
