@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Ite
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: Lights, camera, action! MainActivity is starting up.");
         mProgressBar = (ProgressBar) findViewById(R.id.pb_loading);
 
         //setup recycler view
